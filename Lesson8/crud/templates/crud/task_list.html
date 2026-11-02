@@ -1,0 +1,14 @@
+<h1>Задачи</h1>
+<a href="{% url 'crud:task_create' %}">Создать</a>
+<ul>
+  {% for task in tasks %}
+    <li>
+      <a href="{% url 'crud:task_detail' task.pk %}">{{ task.title }}</a>
+      {% if task.done %}✔{% endif %}
+      <a href="{% url 'crud:task_update' task.pk %}">Изменить</a>
+      <a href="{% url 'crud:task_delete' task.pk %}">Удалить</a>
+    </li>
+  {% empty %}
+    <li>Задач пока нет</li>
+  {% endfor %}
+</ul>
