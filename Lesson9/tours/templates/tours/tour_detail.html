@@ -1,0 +1,17 @@
+<h1>{{ tour.title }}</h1>
+<p>{{ tour.description }}</p>
+<p>Цена: {{ tour.price }}</p>
+<p>Категории: {% for c in tour.categories.all %}{{ c.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+<a href="{% url 'tours:book_tour' tour.pk %}">Купить тур</a> |
+<a href="{% url 'tours:add_comment' tour.pk %}">Оставить комментарий</a>
+
+<h2>Комментарии</h2>
+<ul>
+  {% for comment in comments %}
+    <li><b>{{ comment.user }}</b>: {{ comment.text }}</li>
+  {% empty %}
+    <li>Комментариев пока нет</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'tours:tour_list' %}">К списку туров</a>

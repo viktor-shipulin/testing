@@ -1,0 +1,7 @@
+<h1>{% if object %}Изменить задачу{% else %}Новая задача{% endif %}</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>
+<a href="{% url 'crud:task_list' %}">Отмена</a>
