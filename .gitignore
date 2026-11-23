@@ -4,3 +4,8 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 storage/
+
+__pycache__/
+venv/
+.venv/
+db.sqlite3

@@ -1,0 +1,9 @@
+<h1>Мои покупки</h1>
+<ul>
+  {% for b in bookings %}
+    <li>{{ b.tour.title }} — {{ b.date }} {{ b.time }}</li>
+  {% empty %}
+    <li>Покупок пока нет</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'tours:tour_list' %}">К списку туров</a>

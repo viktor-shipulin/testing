@@ -1,0 +1,11 @@
+<h1>Личный кабинет</h1>
+<p>Логин: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Имя: {{ user.first_name }} {{ user.last_name }}</p>
+<p>Дата регистрации: {{ user.date_joined|date:"d.m.Y" }}</p>
+<a href="{% url 'cabinet_edit' %}">Редактировать</a> |
+<a href="{% url 'tours:tour_list' %}">Туры</a>
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Выйти</button>
+</form>

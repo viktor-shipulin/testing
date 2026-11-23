@@ -1,0 +1,4 @@
+<h1>{{ object.title }}</h1>
+<p>{{ object.description }}</p>
+<p>Готово: {{ object.done|yesno:"да,нет" }}</p>
+<a href="{% url 'crud:task_list' %}">К списку</a>

@@ -31,7 +31,7 @@ def tour_detail(request, pk):
 def book_tour(request, pk):
     """Покупка тура на выбранные день и время."""
     tour = get_object_or_404(Tour, pk=pk)
-    form = BookingForm(request.POST or None, user=request.user, tour=tour)
+    form = BookingForm(request.POST if request.method == "POST" else None, user=request.user, tour=tour)
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect("tours:my_bookings")
@@ -42,7 +42,7 @@ def book_tour(request, pk):
 def add_comment(request, pk):
     """Комментарий к туру. Разрешён только если у пользователя есть бронь."""
     tour = get_object_or_404(Tour, pk=pk)
-    form = CommentForm(request.POST or None, user=request.user, tour=tour)
+    form = CommentForm(request.POST if request.method == "POST" else None, user=request.user, tour=tour)
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect("tours:tour_detail", pk=tour.pk)
@@ -59,7 +59,7 @@ def my_bookings(request):
 def profile_edit(request):
     """Редактирование профиля (связь один к одному с User)."""
     profile, _ = Profile.objects.get_or_create(user=request.user)
-    form = ProfileForm(request.POST or None, instance=profile)
+    form = ProfileForm(request.POST if request.method == "POST" else None, instance=profile)
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect("tours:my_bookings")
